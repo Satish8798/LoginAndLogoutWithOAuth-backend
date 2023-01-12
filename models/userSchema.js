@@ -22,7 +22,6 @@ const userSchema = new Schema({
         lowercase: true,
         trim: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
-        required: true,
         unique: [true, "Email already exists"]
     },
     password:{
@@ -31,6 +30,10 @@ const userSchema = new Schema({
     },
     picture:{
         type: String
+    }
+    ,
+    provider:{
+        type:String
     }
 
 /*     notes:[mongoose.ObjectId]
