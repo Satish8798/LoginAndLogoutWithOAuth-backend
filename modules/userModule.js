@@ -17,6 +17,7 @@ module.exports.authenticateSocial = async (req, res) => {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     picture: req.body.picture,
+    provider: req.body.provider
   });
 
   try {
