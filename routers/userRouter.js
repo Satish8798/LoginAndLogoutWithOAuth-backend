@@ -6,6 +6,6 @@ router.post('/signup',userModule.signUp);
 router.post('/login',userModule.logIn);
 router.post('/auth/social',userModule.authenticateSocial);
 router.get('/auth/github/redirect',userModule.githubRedirect);
-router.get('/auth/getUser',userModule.getUser);
+router.get('/auth/facebook/redirect',userModule.facebookRedirect);
 
-module.exports = router;
+module.exports = router; 

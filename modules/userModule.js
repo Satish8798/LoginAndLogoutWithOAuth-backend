@@ -117,6 +117,8 @@ module.exports.githubRedirect = (req,res) =>{
 };
 
 
-module.exports.getUser = ((req, res)=>{
+module.exports.facebookRedirect = ((req, res)=>{
+  const code = req.query.code;
+  console.log(code);
 
 })
