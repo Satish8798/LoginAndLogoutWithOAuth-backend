@@ -109,11 +109,14 @@ module.exports.githubRedirect = (req,res) =>{
   }).then((response) => {
     
     const accessToken = response.data.access_token
-    console.log(response.data)
 
     // redirect the user to the home page, along with the access token
-     res.redirect(`https://roaring-sprinkles-cd0613.netlify.app/auth/login/${accessToken}`)
-    //  res.redirect(`https://roaring-sprinkles-cd0613.netlify.app/auth/login?gh_access_token=${accessToken}`)
-     //res.redirect(`http://localhost:3000/auth/login/${accessToken}`)
+    //  res.redirect(`https://roaring-sprinkles-cd0613.netlify.app/auth/login/${accessToken}`)
+     res.redirect(`https://roaring-sprinkles-cd0613.netlify.app/auth/login?gh_access_token=${accessToken}`)
   })
-}
+};
+
+
+module.exports.getUser = ((req, res)=>{
+
+})
