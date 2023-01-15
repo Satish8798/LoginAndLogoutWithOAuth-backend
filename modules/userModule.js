@@ -2,7 +2,9 @@ const userModel = require("../models/userSchema");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { default: axios } = require("axios");
+const axios = require("axios");
+const url = require('url');
+const { access } = require("fs");
 
 //moudle for social login such as google facebook github...
 module.exports.authenticateSocial = async (req, res) => {
@@ -111,14 +113,33 @@ module.exports.githubRedirect = (req,res) =>{
     const accessToken = response.data.access_token
 
     // redirect the user to the home page, along with the access token
-    //  res.redirect(`https://roaring-sprinkles-cd0613.netlify.app/auth/login/${accessToken}`)
      res.redirect(`https://roaring-sprinkles-cd0613.netlify.app/auth/login?ghat=${accessToken}`)
   })
 };
 
 
-module.exports.facebookRedirect = ((req, res)=>{
+module.exports.discordRedirect = async (req, res)=>{
   const code = req.query.code;
-  console.log(code);
+  const redirect = 'http://localhost:8000/user/auth/discord/redirect'
+  const creds = btoa(`${process.env.discord_client_id}:${process.env.discord_client_secret}`)
 
-})
+   try {
+    const formData = new url.URLSearchParams({
+      client_id: process.env.discord_client_id,
+      client_secret: process.env.discord_client_secret,
+      grant_type: 'authorization_code',
+      code: code.toString(),
+      redirect_uri: redirect
+    })
+    const response = await axios.post('https://discord.com/api/v10/oauth2/token',formData.toString(),{
+    headers:{
+      'Content-Type' : 'application/x-www-form-urlencoded'
+    }
+   });
+   const {access_token} = response.data;
+
+    res.redirect('https://roaring-sprinkles-cd0613.netlify.app/auth/login?dat='+access_token)
+   } catch (error) {
+    console.log(error);
+   }
+}; 
