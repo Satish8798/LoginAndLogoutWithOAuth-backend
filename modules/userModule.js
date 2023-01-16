@@ -121,7 +121,7 @@ module.exports.githubRedirect = (req,res) =>{
 module.exports.discordRedirect = async (req, res)=>{
   const code = req.query.code;
   if(!code) return res.redirect(`https://roaring-sprinkles-cd0613.netlify.app/auth/login`);
-  const redirect = 'https://login-logout-oauth.onrender.com/user/auth/discord/redirect'
+  const redirect = 'http://localhost:8000/user/auth/discord/redirect'
   const creds = btoa(`${process.env.discord_client_id}:${process.env.discord_client_secret}`)
 
    try {
