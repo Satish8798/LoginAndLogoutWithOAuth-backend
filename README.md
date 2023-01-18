@@ -1,5 +1,5 @@
 # LoginAndLogoutWithOAuth-backend
-this repo consists of code for server for login logout systm using oauth.
+this repo consists of code for server for login logout systm using oauth..
 
 # Facebook Login Issue.
 
