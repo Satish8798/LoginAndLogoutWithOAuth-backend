@@ -94,7 +94,7 @@ module.exports.logIn = async (req, res) => {
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
-    picture: "",
+    picture: user.picture,
   };
 
   //comparing the password with hashed password
