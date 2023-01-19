@@ -207,3 +207,16 @@ module.exports.facebookRedirect = async (req, res) => {
     console.log(error);
   }
 };
+
+module.exports.changeProfilePicture = async (req,res) =>{
+  try { 
+    const response = await userModel.updateOne({
+      email: req.body.email
+    },{
+      $set: {picture: req.body.picture}
+    })
+    res.status(200).send(true);
+  } catch (error) {
+      console.log(error)
+  }
+}
