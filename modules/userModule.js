@@ -135,7 +135,7 @@ module.exports.githubRedirect = (req, res) => {
 
     // redirect the user to the home page, along with the access token
     res.redirect(
-      `http://localhost:3000/auth/login?ghat=${accessToken}`
+      `https://roaring-sprinkles-cd0613.netlify.app/auth/login?ghat=${accessToken}`
     );
   });
 };
@@ -145,10 +145,10 @@ module.exports.discordRedirect = async (req, res) => {
   const code = req.query.code;
   if (!code)
     return res.redirect(
-      `http://localhost:3000/auth/login`
+      `https://roaring-sprinkles-cd0613.netlify.app/auth/login`
     );
   const redirect =
-    "http://localhost:8000/user/auth/discord/redirect";
+    "https://login-logout-oauth.onrender.com/user/auth/discord/redirect";
 
   try {
     const formData = new url.URLSearchParams({
@@ -174,7 +174,7 @@ module.exports.discordRedirect = async (req, res) => {
     
     // redirect the user to the home page, along with the access token
     res.redirect(
-      "http://localhost:3000/auth/login?dat=" +
+      "https://roaring-sprinkles-cd0613.netlify.app/auth/login?dat=" +
         access_token
     );
   } catch (error) {
@@ -200,7 +200,7 @@ module.exports.facebookRedirect = async (req, res) => {
     
     // redirect the user to the home page, along with the access token
     res.redirect(
-      "http://localhost:3000/auth/login?fbat=" +
+      "https://roaring-sprinkles-cd0613.netlify.app/auth/login?fbat=" +
         access_token
     ); 
 
