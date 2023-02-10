@@ -221,3 +221,68 @@ module.exports.changeProfilePicture = async (req,res) =>{
       console.log(error)
   }
 }
+
+//module for getting the todolist
+
+module.exports.getTodoList = async (req,res) =>{
+
+  try {
+    const user = await userModel.findOne({_id:req.params.id});
+    const todos = user.todos
+    res.status(200).send({
+      msg:true,
+      todos
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(400).send({
+      error
+    })
+  }
+
+}
+
+//module for adding a todo to the todolist
+
+module.exports.addTodo = async (req,res) =>{
+  try {
+    const response = await userModel.updateOne({_id: mongoose.Types.ObjectId(req.body.id)},{
+      $push: {todos: req.body.todo}
+    })
+    const user = await userModel.findOne({_id:  mongoose.Types.ObjectId(req.body.id)});
+    const todos = user.todos;
+    
+    res.status(200).send({
+      msg:true,
+      todos
+    })
+  } catch (error) {
+    res.status(400).send({
+      error
+    })
+  }
+
+  
+
+}
+
+//module for deleting a todo from the todolist
+
+module.exports.deleteTodo = async (req,res) =>{
+  try {
+    const response = await userModel.updateOne({_id: req.body.id},{
+      $pull: {todos: req.body.todo}
+    })
+
+    const user = await userModel.findOne({_id: req.body.id});
+    const todos = user.todos;
+    res.status(200).send({
+      msg:true,
+      todos
+    })
+  } catch (error) {
+    res.status(400).send({
+      error
+    })
+  }
+}

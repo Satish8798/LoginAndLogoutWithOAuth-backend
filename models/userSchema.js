@@ -34,7 +34,8 @@ const userSchema = new Schema({
     ,
     provider:{
         type:String
-    }
+    },
+    todos:[String]
 
 /*     notes:[mongoose.ObjectId]
  */});
