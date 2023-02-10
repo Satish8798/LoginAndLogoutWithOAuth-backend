@@ -10,11 +10,12 @@ const { access } = require("fs");
 module.exports.authenticateSocial = async (req, res) => {
   //checking if user aready exists
   const user = await userModel.findOne({ email: req.body.email });
-
+  console.log(user)
   //user exists case
   if (user) {
     return res.status(200).send({
       msg: true,
+      user
     });
   }
 
@@ -134,7 +135,7 @@ module.exports.githubRedirect = (req, res) => {
 
     // redirect the user to the home page, along with the access token
     res.redirect(
-      `https://roaring-sprinkles-cd0613.netlify.app/auth/login?ghat=${accessToken}`
+      `http://localhost:3000/auth/login?ghat=${accessToken}`
     );
   });
 };
@@ -144,10 +145,10 @@ module.exports.discordRedirect = async (req, res) => {
   const code = req.query.code;
   if (!code)
     return res.redirect(
-      `https://roaring-sprinkles-cd0613.netlify.app/auth/login`
+      `http://localhost:3000/auth/login`
     );
   const redirect =
-    "https://login-logout-oauth.onrender.com/user/auth/discord/redirect";
+    "http://localhost:8000/user/auth/discord/redirect";
 
   try {
     const formData = new url.URLSearchParams({
@@ -173,7 +174,7 @@ module.exports.discordRedirect = async (req, res) => {
     
     // redirect the user to the home page, along with the access token
     res.redirect(
-      "https://roaring-sprinkles-cd0613.netlify.app/auth/login?dat=" +
+      "http://localhost:3000/auth/login?dat=" +
         access_token
     );
   } catch (error) {
@@ -199,7 +200,7 @@ module.exports.facebookRedirect = async (req, res) => {
     
     // redirect the user to the home page, along with the access token
     res.redirect(
-      "https://roaring-sprinkles-cd0613.netlify.app/auth/login?fbat=" +
+      "http://localhost:3000/auth/login?fbat=" +
         access_token
     ); 
 
