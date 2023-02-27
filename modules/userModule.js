@@ -10,7 +10,6 @@ const { access } = require("fs");
 module.exports.authenticateSocial = async (req, res) => {
   //checking if user aready exists
   const user = await userModel.findOne({ email: req.body.email });
-  console.log(user)
   //user exists case
   if (user) {
     return res.status(200).send({
@@ -30,9 +29,10 @@ module.exports.authenticateSocial = async (req, res) => {
 
   //saving the user
   try {
-    await userData.save();
+    const user = await userData.save();
     res.status(200).send({
       msg: true,
+      user
     });
   } catch (error) {
     res.status(400).send({
